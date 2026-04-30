@@ -1,4 +1,4 @@
-# COS30049 CITP Malware Scanning Website
+# BuggedFile: A website for scanning malicious files online
 
 ## Group 16
 ### Members:
