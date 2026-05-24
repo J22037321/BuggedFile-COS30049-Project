@@ -1,0 +1,50 @@
+Benign samples: 7987
+Malware samples: 6837
+The data has 14824 samples with 19 usable features.
+After evaluating with an Extra Trees Forest model the most important features out of the 19 before are the 13 features below:
+
+1. dlls_calls (0.0736)
+2. rdata_PointerToRawData (0.0731)
+3. text_VirtualSize (0.0691)
+4. rdata_VirtualAddress (0.0685)
+5. SizeOfUninitializedData (0.0667)
+6. SizeOfInitializedData (0.0657)
+7. rdata_SizeOfRawData (0.0631)
+8. EntryPoint (0.0629)
+9. text_SizeOfRawData (0.0612)
+10. SizeOfHeaders (0.0612)
+11. text_PointerToRawData (0.0563)
+12. SizeOfImage (0.0547)
+13. SectionAlignment (0.0527)
+SKLearn accuracy score:0.8938 
+
+              precision    recall  f1-score   support
+
+      Benign       0.89      0.92      0.90      1598
+     Malware       0.90      0.87      0.88      1367
+
+    accuracy                           0.89      2965
+   macro avg       0.89      0.89      0.89      2965
+weighted avg       0.89      0.89      0.89      2965
+
+Cross-validation accuracy: 0.7248
+
+Correctly classified samples:
+           apis  dlls_calls  EntryPoint  SizeOfCode  SizeOfImage  SizeOfInitializedData  SizeOfUninitializedData  ...  BaseOfData     ImageBase  SectionAlignment  SizeOfHeaders  Actual  Predicted  Correct
+11968  0.000000    0.000000    0.000252    0.000000     0.000000           0.000000e+00                      0.0  ...    0.000000  0.000000e+00            0.0000       0.000000     1.0        1.0     True
+10855  0.000280    0.007463    0.000013    0.000009     0.000003           3.576279e-07                      0.0  ...    0.000002  2.981060e-08            0.1250       0.007812     1.0        1.0     True
+14246  0.043077    0.059701    0.000008    0.000006     0.000047           2.394915e-04                      0.0  ...    0.000001  2.981060e-08            0.0625       0.015625     1.0        1.0     True
+6893   0.042238    0.067164    0.000015    0.000100     0.000020           6.675720e-06                      0.0  ...    0.000019  2.981060e-08            0.0625       0.015625     0.0        0.0     True
+7848   0.000280    0.014925    0.000036    0.000159     0.000039           1.388788e-04                      0.0  ...    0.000869  2.981060e-08            0.0625       0.023438     0.0        0.0     True
+
+[5 rows x 22 columns]
+
+Misclassified samples:
+           apis  dlls_calls  EntryPoint  SizeOfCode  SizeOfImage  SizeOfInitializedData  SizeOfUninitializedData  ...    BaseOfData     ImageBase  SectionAlignment  SizeOfHeaders  Actual  Predicted  Correct
+1856   0.056224    0.022388    0.000035    0.000044     0.000022               0.000039                      0.0  ...  8.577544e-06  2.981060e-08            0.0625       0.015625     0.0        1.0    False
+2782   0.024615    0.022388    0.000024    0.000046     0.000018               0.000047                      0.0  ...  8.934942e-06  2.981060e-08            0.0625       0.015625     0.0        1.0    False
+9125   0.076643    0.111940    0.000099    0.000148     0.000062               0.000113                      0.0  ...  2.787702e-05  6.319847e-06            0.0625       0.015625     1.0        0.0    False
+9636   0.015105    0.007463    0.000005    0.000032     0.000016               0.000051                      0.0  ...  1.786988e-07  2.981060e-08            0.0625       0.062500     1.0        0.0    False
+13777  0.000000    0.007463    0.001686    0.000010     0.000254               0.000259                      0.0  ...  2.144386e-06  5.868961e-08            0.0625       0.007812     1.0        0.0    False
+
+[5 rows x 22 columns]
