@@ -1,4 +1,5 @@
 import recent from './image/recent.svg';
+<<<<<<< HEAD
 import correct from './image/correct.svg';
 import error from './image/error.svg';
 
@@ -19,10 +20,15 @@ export default function ScanHistory() {
   } 
 
   else {
+=======
+
+export default function ScanHistory() {
+>>>>>>> fdf5c3800b20ab62096ba1b82599bf3f944e7d00
   return (
     <div className="App-card App-recent-scans">
         <h2>Recent Scans</h2>
         <div className="App-recent-scans-content">
+<<<<<<< HEAD
             <img src={error} alt="Correct" aria-hidden="true" />
             <div className="App-recent-scans-item">
                 <p>Assignment 1.pdf</p>
@@ -47,4 +53,15 @@ export default function ScanHistory() {
     </div>
   );
   }
+=======
+            <img src={recent} alt="Recent" aria-hidden="true" />
+            <span className="App-recent-scans-empty">No scans yet</span>
+        </div>
+    </div>
+  );
+
+//   return (
+
+//   )
+>>>>>>> fdf5c3800b20ab62096ba1b82599bf3f944e7d00
 }

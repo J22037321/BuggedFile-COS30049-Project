@@ -1,5 +1,6 @@
 import logo from './image/logo.svg';
 import upload from './image/upload.svg';
+<<<<<<< HEAD
 import search from './image/search.svg';
 import document from './image/document.svg';
 import './App.css';
@@ -29,6 +30,12 @@ function App() {
     fileInputRef.current.value = ""; // resets the input so the same file can be re-selected
   };
 
+=======
+import './App.css';
+import ScanHistory from './ScanHistory';
+
+function App() {
+>>>>>>> fdf5c3800b20ab62096ba1b82599bf3f944e7d00
   return (
     <div className="App">
       {/* Header */}
@@ -54,6 +61,7 @@ function App() {
             {/* File Upload Section */}
             <div className="App-card App-file-upload">
               <h2>Upload file</h2>
+<<<<<<< HEAD
               <div className="App-card App-file-upload-box" onClick={handleBoxClick}>
                 {selectedFile ? (
                   <>
@@ -81,6 +89,17 @@ function App() {
               </div>
               <button type="button" className="App-scan-button" disabled>
                 <img src={search} alt="Scan" aria-hidden="true" />
+=======
+              <div className="App-card App-file-upload-box">
+                <img src={upload} alt="Upload" aria-hidden="true" />
+                <span className="Drag-drop">Drag and drop a file here</span>
+                <span>or click to select a file</span>
+                <div className="App-file-types">
+                  <span>.exe</span><span>.pdf</span><span>.zip</span><span>.js</span><span>.py</span>
+                </div>
+              </div>
+              <button type="button" className="App-scan-button">
+>>>>>>> fdf5c3800b20ab62096ba1b82599bf3f944e7d00
                 Scan file
               </button>
             </div>
@@ -107,11 +126,16 @@ function App() {
               {/* Recent Scans Section */}
               <ScanHistory />
             </div>
+<<<<<<< HEAD
           </div>
           
           {/* File Analysis Results Section */}
           <ScanResult />
 
+=======
+
+          </div>
+>>>>>>> fdf5c3800b20ab62096ba1b82599bf3f944e7d00
         </main>
       </div>
       
