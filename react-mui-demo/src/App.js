@@ -79,7 +79,7 @@ function App() {
                   onChange={handleFileChange}
                 />
               </div>
-              <button type="button" className="App-scan-button" disabled>
+              <button type="button" className="App-scan-button">
                 <img src={search} alt="Scan" aria-hidden="true" />
                 Scan file
               </button>
