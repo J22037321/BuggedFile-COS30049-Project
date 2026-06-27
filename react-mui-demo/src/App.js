@@ -52,7 +52,7 @@ function App() {
 
       if (data.detail) {
         // Backend returned an error (invalid PE file)
-        setErrorMessage("This file is not a valid executable (PE format).");
+        setErrorMessage("This file is not a valid file. Please upload .exe, .dll, .sys, or .ocx files only.");
         setScanResult(null);
         return;
       }
