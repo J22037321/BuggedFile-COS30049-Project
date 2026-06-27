@@ -367,3 +367,77 @@ h2 {
     transform: rotate(360deg);
   }
 }
+
+.App-error-popup {
+  background-color: #ff4d4d; /* same red as threats */
+  color: #fff;
+  padding: 10px 0px 10px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  border-radius: 8px;
+  font-weight: bold;
+  text-align: center;
+  animation: bounceIn 0.6s ease;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+}
+
+/* Bounce animation */
+@keyframes bounceIn {
+  0% {
+    transform: scale(0.8);
+    opacity: 0;
+  }
+  50% {
+    transform: scale(1.05);
+    opacity: 1;
+  }
+  70% {
+    transform: scale(0.95);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+/* For file names in upload box */
+.App-file-upload-box span {
+  display: block;
+  max-width: 220px;   /* adjust to fit your design */
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* For recent scans list */
+.App-recent-scans ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.App-recent-scans li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 260px;   /* adjust to sidebar width */
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.App-recent-scans li span:first-child {
+  flex: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* Optional: show full name on hover */
+.App-recent-scans li span:first-child:hover,
+.App-file-upload-box span:hover {
+  white-space: normal;
+  word-break: break-all;
+  background: #f9f9f9;
+  padding: 2px 4px;
+  border-radius: 4px;
+}
