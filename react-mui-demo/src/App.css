@@ -427,3 +427,112 @@ h2 {
     transform: rotate(360deg);
   }
 }
+
+/* Tablet (portrait & landscape, ~768px to 1024px) */
+@media (max-width: 1024px) {
+  .App-content {
+    grid-template-columns: 1fr; /* stack main + sidebar vertically */
+  }
+
+  .App-sidebar {
+    flex-direction: row; /* show stats + recent scans side by side */
+    gap: 1rem;
+  }
+
+  .App-results-text {
+    width: 100%; /* allow result box text to expand */
+  }
+
+  .chart {
+    width: 100%; /* charts take full width */
+  }
+}
+
+/* Mobile (phones, ~480px to 767px) */
+@media (max-width: 767px) {
+  .App-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+
+  .App-nav > ul {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .App-main {
+    padding: 1rem;
+  }
+
+  .App-content {
+    grid-template-columns: 1fr; /* single column */
+  }
+
+  .App-card {
+    padding: 1rem;
+  }
+
+  h2 {
+    font-size: 0.9rem;
+  }
+
+  .App-result-box {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .App-results-text {
+    width: 100%;
+  }
+
+  .chartTitle {
+    font-size: 1rem;
+  }
+
+  .chart {
+    padding: 1rem;
+    width: 100%;
+  }
+
+  .App-apidll-box {
+    margin-left: 0;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .App-apidll {
+    width: 100%;
+    margin-top: 1rem;
+  }
+}
+
+/* Small mobile (extra small, <480px) */
+@media (max-width: 480px) {
+  .App-header > img {
+    height: 2rem;
+    width: 2rem;
+  }
+
+  .App-title > h1 {
+    font-size: 1rem;
+  }
+
+  .App-title > p {
+    font-size: 0.65rem;
+  }
+
+  .App-scan-button {
+    font-size: 0.9rem;
+    padding: 0.5rem;
+  }
+
+  .App-results-text {
+    gap: 0.25rem;
+  }
+
+  .App-good-result,
+  .App-bad-result {
+    font-size: 1.2rem;
+  }
+}
