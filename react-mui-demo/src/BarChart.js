@@ -14,8 +14,6 @@ export default function SummaryBarChart({ features }) {
 
     // ✅ Summary stats instead of section layout
     const data = [
-      { name: "dll_count", value: features.dll_count },
-      { name: "api_calls", value: features.api_calls },
       { name: "SizeOfInitializedData", value: features.SizeOfInitializedData },
       { name: "SizeOfUninitializedData", value: features.SizeOfUninitializedData }
     ];

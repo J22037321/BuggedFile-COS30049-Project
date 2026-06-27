@@ -375,6 +375,7 @@ h2 {
   height: 100%;
   border-radius: 9999px;
   transition: width 0.4s ease-out; /* Smooth slide effect on update */
+  background-color: blue;
 }
 
 .App-good-result {
@@ -398,6 +399,20 @@ h2 {
   border: 1px solid black;
   width: 95%;
   /* height: 0rem; */
+}
+
+.App-apidll-box {
+  display: flex;
+  margin-left: 10rem;
+  gap: 1rem;
+}
+
+.App-apidll {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  width: 15rem;
+  margin-top: 2.5rem;
 }
 
 

@@ -41,8 +41,16 @@ function App() {
 
   const handleScanFile = async () => {
     if (!selectedFile) return;
+
+    const alreadyScanned = recentScans.some(scan => scan.filename === selectedFile.name);
+    if (alreadyScanned) {
+      setErrorMessage("This file has already been scanned.");
+      return;
+    }
+
     const formData = new FormData();
     formData.append("file", selectedFile);
+
     try {
       const response = await fetch("http://127.0.0.1:8000/predict", {
         method: "POST",
@@ -51,7 +59,6 @@ function App() {
       const data = await response.json();
 
       if (data.detail) {
-        // Backend returned an error (invalid PE file)
         setErrorMessage("This file is not a valid file. Please upload .exe, .dll, .sys, or .ocx files only.");
         setScanResult(null);
         return;
@@ -68,12 +75,13 @@ function App() {
         setCleanFiles(prev => prev + 1);
       }
 
-      // Add to recent scans (keep last 5)
       setRecentScans(prev => [
-        { filename: data.filename, 
-          prediction: data.prediction, 
+        {
+          filename: data.filename,
+          prediction: data.prediction,
           timestamp: new Date().toLocaleTimeString(),
-          features: data.features },
+          features: data.features
+        },
         ...prev.slice(0, 4)
       ]);
     } catch (error) {

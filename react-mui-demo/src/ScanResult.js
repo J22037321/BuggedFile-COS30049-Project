@@ -5,6 +5,10 @@ import LineChart from './LineChart';
 import BarChart from './BarChart';
 
 export default function ScanResult({ scanResult }) {
+
+  const total = scanResult.features.dll_count + scanResult.features.api_calls;
+  const dllPercent = ((scanResult.features.dll_count / total) * 100).toFixed(2);
+  const apiPercent = ((scanResult.features.api_calls / total) * 100).toFixed(2);
   
   return (
     <div className="App-results">
@@ -24,6 +28,26 @@ export default function ScanResult({ scanResult }) {
                     className="App-progress-bar-fill" 
                     style={{ width: `${scanResult.confidence || 0}%`, backgroundColor: scanResult.prediction === "Malware" ? "red" : "green"}}
                   ></div>
+                </div>
+              </div>
+              <div className="App-apidll-box">
+                <div className="App-apidll">
+                  <span>DLL Count: {dllPercent}%</span>
+                  <div className="App-progress-bar-bg">
+                    <div 
+                      className="App-progress-bar-fill" 
+                      style={{ width: `${dllPercent || 0}%`}}
+                    ></div>
+                  </div>
+                </div>
+                <div className="App-apidll">
+                    <span>API Calls: {apiPercent}%</span>
+                    <div className="App-progress-bar-bg">
+                      <div 
+                        className="App-progress-bar-fill" 
+                        style={{ width: `${apiPercent || 0}%`}}
+                      ></div>
+                    </div>
                 </div>
               </div>
             </div>
