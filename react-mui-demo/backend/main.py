@@ -77,9 +77,12 @@ async def predict(file: UploadFile = File(...)):
     vector = [features[col] for col in feature_columns]
     scaled_vector = scaler.transform([vector])
     prediction = model.predict(scaled_vector)[0]
+    proba = model.predict_proba(scaled_vector)[0]
+    confidence = max(proba) * 100
 
     return {
         "filename": file.filename,
         "prediction": "Malware" if prediction == 1 else "Benign",
+        "confidence": confidence,
         "features": {col: features[col] for col in feature_columns}
     }

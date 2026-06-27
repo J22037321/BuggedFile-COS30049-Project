@@ -191,6 +191,7 @@ function App() {
                   {scanResult.prediction}
                 </span>
               </p>
+			  <p><strong>Confidence:</strong> {scanResult.confidence.toFixed(2)}%</p>
               <h3>Extracted Features</h3>
               <ul>
                 {Object.entries(scanResult.features).map(([key, value]) => (
