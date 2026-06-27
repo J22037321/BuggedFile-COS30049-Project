@@ -32,22 +32,10 @@ export default function ScanResult({ scanResult }) {
               </div>
               <div className="App-apidll-box">
                 <div className="App-apidll">
-                  <span>DLL Count: {dllPercent}%</span>
-                  <div className="App-progress-bar-bg">
-                    <div 
-                      className="App-progress-bar-fill" 
-                      style={{ width: `${dllPercent || 0}%`}}
-                    ></div>
-                  </div>
+                  <span>DLL Count: {dllPercent}</span>
                 </div>
                 <div className="App-apidll">
-                    <span>API Calls: {apiPercent}%</span>
-                    <div className="App-progress-bar-bg">
-                      <div 
-                        className="App-progress-bar-fill" 
-                        style={{ width: `${apiPercent || 0}%`}}
-                      ></div>
-                    </div>
+                    <span>API Calls: {apiPercent}</span>
                 </div>
               </div>
             </div>
