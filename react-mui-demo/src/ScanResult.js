@@ -7,8 +7,8 @@ import BarChart from './BarChart';
 export default function ScanResult({ scanResult }) {
 
   const total = scanResult.features.dll_count + scanResult.features.api_calls;
-  const dllPercent = ((scanResult.features.dll_count / total) * 100).toFixed(2);
-  const apiPercent = ((scanResult.features.api_calls / total) * 100).toFixed(2);
+  const dllCount = scanResult.features.dll_count
+  const apiCount = scanResult.features.api_calls
   
   return (
     <div className="App-results">
@@ -32,10 +32,10 @@ export default function ScanResult({ scanResult }) {
               </div>
               <div className="App-apidll-box">
                 <div className="App-apidll">
-                  <span>DLL Count: {dllPercent}</span>
+                  <span>Unique DLL Count: {dllCount}</span>
                 </div>
                 <div className="App-apidll">
-                    <span>API Calls: {apiPercent}</span>
+                    <span>API Calls: {apiCount}</span>
                 </div>
               </div>
             </div>
