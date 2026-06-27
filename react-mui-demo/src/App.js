@@ -89,6 +89,28 @@ function App() {
       setErrorMessage("Error scanning file. Please try again.");
     }
   };
+  
+  const handleClearRecentScans = async () => {
+    if (!window.confirm("Are you sure you want to clear recent scans?")) return;
+    try {
+      await fetch("http://127.0.0.1:8000/recent_scans", { method: "DELETE" });
+      setRecentScans([]);
+    } catch (error) {
+      console.error("Error clearing recent scans:", error);
+    }
+  };
+
+  const handleResetStats = async () => {
+    if (!window.confirm("Are you sure you want to reset stats?")) return;
+    try {
+      await fetch("http://127.0.0.1:8000/stats", { method: "DELETE" });
+      setScansToday(0);
+      setThreatsDetected(0);
+      setCleanFiles(0);
+    } catch (error) {
+      console.error("Error resetting stats:", error);
+    }
+  };
 
   return (
     <div className="App">
@@ -99,13 +121,6 @@ function App() {
           <h1>BuggedFile</h1>
           <p>Malicious File Detection and Analysis</p>
         </div>
-        <nav className="App-nav">
-          <ul>
-            <li><a href="/">Result</a></li>
-            <li><a href="/about">AI Model</a></li>
-            <li><a href="/contact">About Us</a></li>
-          </ul>
-        </nav>
       </header>
 
       <div className="App-mainwrapper">
@@ -167,11 +182,17 @@ function App() {
                 <div className="App-stats">
                   <span>Clean Files</span>
                   <span className="App-value App-clean">{cleanFiles}</span>
-                </div>  
+                </div>
+				<button type="button" onClick={handleResetStats} className="App-scan-button">
+					Reset Stats
+				</button>				
               </div>
 
               {/* Recent Scans Section */}
               <ScanHistory recentScans={recentScans}/>
+				<button type="button" onClick={handleClearRecentScans} className="App-scan-button">
+					Clear Recent Scans
+				</button>
             </div>
           </div>
           
