@@ -11,6 +11,14 @@ function App() {
 
   const fileInputRef = useRef(null);
   const [selectedFile, setSelectedFile] = useState(null);
+  const [scanResult, setScanResult] = useState(null);
+  const [errorMessage, setErrorMessage] = useState("");
+  const [recentScans, setRecentScans] = useState([]);
+
+  // Stats state
+  const [scansToday, setScansToday] = useState(0);
+  const [threatsDetected, setThreatsDetected] = useState(0);
+  const [cleanFiles, setCleanFiles] = useState(0);
 
   const handleBoxClick = () => {
     fileInputRef.current.click();
@@ -26,7 +34,52 @@ function App() {
   const handleClearFile = (e) => {
     e.stopPropagation(); // prevents triggering the box click
     setSelectedFile(null);
+    setErrorMessage("");
+    setScanResult(null);
     fileInputRef.current.value = ""; // resets the input so the same file can be re-selected
+  };
+
+  const handleScanFile = async () => {
+    if (!selectedFile) return;
+    const formData = new FormData();
+    formData.append("file", selectedFile);
+    try {
+      const response = await fetch("http://127.0.0.1:8000/predict", {
+        method: "POST",
+        body: formData
+      });
+      const data = await response.json();
+
+      if (data.detail) {
+        // Backend returned an error (invalid PE file)
+        setErrorMessage("This file is not a valid executable (PE format).");
+        setScanResult(null);
+        return;
+      }
+
+      setScanResult(data);
+      setErrorMessage("");
+
+      // Update stats
+      setScansToday(prev => prev + 1);
+      if (data.prediction === "Malware") {
+        setThreatsDetected(prev => prev + 1);
+      } else {
+        setCleanFiles(prev => prev + 1);
+      }
+
+      // Add to recent scans (keep last 5)
+      setRecentScans(prev => [
+        { filename: data.filename, 
+          prediction: data.prediction, 
+          timestamp: new Date().toLocaleTimeString(),
+          features: data.features },
+        ...prev.slice(0, 4)
+      ]);
+    } catch (error) {
+      console.error("Error scanning file:", error);
+      setErrorMessage("Error scanning file. Please try again.");
+    }
   };
 
   return (
@@ -68,7 +121,7 @@ function App() {
                     <span className="Drag-drop">Drag and drop a file here</span>
                     <span>or click to select a file</span>
                     <div className="App-file-types">
-                      <span>.exe</span><span>.pdf</span><span>.zip</span><span>.js</span><span>.py</span>
+                      <span>.exe</span><span>.dll</span><span>.sys</span><span>.ocx</span>
                     </div>
                   </>
                 )}
@@ -79,7 +132,12 @@ function App() {
                   onChange={handleFileChange}
                 />
               </div>
-              <button type="button" className="App-scan-button">
+              {errorMessage && (
+                <div className="App-error-popup">
+                  {errorMessage}
+                </div>
+              )}
+              <button type="button" className="App-scan-button" onClick={handleScanFile}>
                 <img src={search} alt="Scan" aria-hidden="true" />
                 Scan file
               </button>
@@ -92,25 +150,27 @@ function App() {
                 <h2>Quick Stats</h2>
                 <div className="App-stats">
                   <span>Scans Today</span>
-                  <span className="App-value">0</span>
+                  <span className="App-value">{scansToday}</span>
                 </div>  
                 <div className="App-stats">
                   <span>Threats Detected</span>
-                  <span className="App-value App-threats">0</span>
+                  <span className="App-value App-threats">{threatsDetected}</span>
                 </div>  
                 <div className="App-stats">
                   <span>Clean Files</span>
-                  <span className="App-value App-clean">0</span>
+                  <span className="App-value App-clean">{cleanFiles}</span>
                 </div>  
               </div>
 
               {/* Recent Scans Section */}
-              <ScanHistory />
+              <ScanHistory recentScans={recentScans}/>
             </div>
           </div>
           
           {/* File Analysis Results Section */}
-          <ScanResult />
+          {scanResult && (
+            <ScanResult scanResult={scanResult}/>
+          )}
 
         </main>
       </div>
