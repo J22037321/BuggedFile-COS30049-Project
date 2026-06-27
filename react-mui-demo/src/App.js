@@ -59,7 +59,7 @@ function App() {
       const data = await response.json();
 
       if (data.detail) {
-        setErrorMessage("This file is not a valid file. Please upload .exe, .dll, .sys, or .ocx files only.");
+        setErrorMessage("This file is not a valid executable (PE format).");
         setScanResult(null);
         return;
       }
